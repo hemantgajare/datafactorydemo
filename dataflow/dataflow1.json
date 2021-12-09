@@ -1,0 +1,39 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText2",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "Join1"
+				}
+			],
+			"script": "source(output(\n\t\tEmployeeKey as string,\n\t\tParentEmployeeKey as string,\n\t\tEmployeeNationalIDAlternateKey as string,\n\t\tParentEmployeeNationalIDAlternateKey as string,\n\t\tSalesTerritoryKey as string,\n\t\tFirstName as string,\n\t\tLastName as string,\n\t\tMiddleName as string,\n\t\tNameStyle as string,\n\t\tTitle as string,\n\t\tHireDate as string,\n\t\tBirthDate as string,\n\t\tLoginID as string,\n\t\tEmailAddress as string,\n\t\tPhone as string,\n\t\tMaritalStatus as string,\n\t\tEmergencyContactName as string,\n\t\tEmergencyContactPhone as string,\n\t\tSalariedFlag as string,\n\t\tGender as string,\n\t\tPayFrequency as string,\n\t\tBaseRate as string,\n\t\tVacationHours as string,\n\t\tSickLeaveHours as string,\n\t\tCurrentFlag as string,\n\t\tSalesPersonFlag as string,\n\t\tDepartmentName as string,\n\t\tStartDate as string,\n\t\tEndDate as string,\n\t\tStatus as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source1\nsource(output(\n\t\tEmployeeKey as string,\n\t\tParentEmployeeKey as string,\n\t\tEmployeeNationalIDAlternateKey as string,\n\t\tParentEmployeeNationalIDAlternateKey as string,\n\t\tSalesTerritoryKey as string,\n\t\tFirstName as string,\n\t\tLastName as string,\n\t\tMiddleName as string,\n\t\tNameStyle as string,\n\t\tTitle as string,\n\t\tHireDate as string,\n\t\tBirthDate as string,\n\t\tLoginID as string,\n\t\tEmailAddress as string,\n\t\tPhone as string,\n\t\tMaritalStatus as string,\n\t\tEmergencyContactName as string,\n\t\tEmergencyContactPhone as string,\n\t\tSalariedFlag as string,\n\t\tGender as string,\n\t\tPayFrequency as string,\n\t\tBaseRate as string,\n\t\tVacationHours as string,\n\t\tSickLeaveHours as string,\n\t\tCurrentFlag as string,\n\t\tSalesPersonFlag as string,\n\t\tDepartmentName as string,\n\t\tStartDate as string,\n\t\tEndDate as string,\n\t\tStatus as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> source2\nsource1, source2 join(source1@ParentEmployeeKey == source2@EmployeeKey,\n\tjoinType:'inner',\n\tbroadcast: 'auto')~> Join1\nJoin1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinput(\n\t\tEmployeeKey as string,\n\t\tParentEmployeeKey as string,\n\t\tEmployeeNationalIDAlternateKey as string,\n\t\tParentEmployeeNationalIDAlternateKey as string,\n\t\tSalesTerritoryKey as string,\n\t\tFirstName as string,\n\t\tLastName as string,\n\t\tMiddleName as string,\n\t\tNameStyle as string,\n\t\tTitle as string,\n\t\tHireDate as string,\n\t\tBirthDate as string,\n\t\tLoginID as string,\n\t\tEmailAddress as string,\n\t\tPhone as string,\n\t\tMaritalStatus as string,\n\t\tEmergencyContactName as string,\n\t\tEmergencyContactPhone as string,\n\t\tSalariedFlag as string,\n\t\tGender as string,\n\t\tPayFrequency as string,\n\t\tBaseRate as string,\n\t\tVacationHours as string,\n\t\tSickLeaveHours as string,\n\t\tCurrentFlag as string,\n\t\tSalesPersonFlag as string,\n\t\tDepartmentName as string,\n\t\tStartDate as string,\n\t\tEndDate as string,\n\t\tStatus as string\n\t),\n\tmapColumn(\n\t\tEmployeeKey = source1@EmployeeKey,\n\t\tParentEmployeeKey = source1@ParentEmployeeKey,\n\t\tEmployeeNationalIDAlternateKey = source1@EmployeeNationalIDAlternateKey,\n\t\tParentEmployeeNationalIDAlternateKey = source1@ParentEmployeeNationalIDAlternateKey,\n\t\tSalesTerritoryKey = source1@SalesTerritoryKey,\n\t\tFirstName = source1@FirstName,\n\t\tLastName = source1@LastName,\n\t\tMiddleName = source1@MiddleName,\n\t\tNameStyle = source1@NameStyle,\n\t\tTitle = source1@Title,\n\t\tHireDate = source1@HireDate,\n\t\tBirthDate = source1@BirthDate,\n\t\tLoginID = source1@LoginID,\n\t\tEmailAddress = source1@EmailAddress,\n\t\tPhone = source1@Phone,\n\t\tMaritalStatus = source1@MaritalStatus,\n\t\tEmergencyContactName = source1@EmergencyContactName,\n\t\tEmergencyContactPhone = source1@EmergencyContactPhone,\n\t\tSalariedFlag = source1@SalariedFlag,\n\t\tGender = source1@Gender,\n\t\tPayFrequency = source1@PayFrequency,\n\t\tBaseRate = source1@BaseRate,\n\t\tVacationHours = source1@VacationHours,\n\t\tSickLeaveHours = source1@SickLeaveHours,\n\t\tCurrentFlag = source1@CurrentFlag,\n\t\tSalesPersonFlag = source1@SalesPersonFlag,\n\t\tDepartmentName = source1@DepartmentName,\n\t\tStartDate = source1@StartDate,\n\t\tEndDate = source1@EndDate,\n\t\tStatus = source1@Status,\n\t\tManagerKey = source2@EmployeeKey,\n\t\tManagerFirstName = source2@FirstName,\n\t\tManagerLastName = source2@LastName,\n\t\tManagerMiddleName = source2@MiddleName\n\t)) ~> sink1"
+		}
+	}
+}

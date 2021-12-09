@@ -1,0 +1,9 @@
+{
+	"name": "mindtreedemodf",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "139612f9-877c-43f2-a15e-756565291bf8",
+		"tenantId": "8aac3eeb-5127-45ea-b1ef-454856977e68"
+	}
+}
